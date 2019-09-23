@@ -15,16 +15,25 @@ class MyGame(arcade.Window):
         super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
         file_path = os.path.dirname(os.path.abspath(__file__))
         os.chdir(file_path)
-        arcade.set_background_color(open_color.white)
+        arcade.set_background_color(open_color.blue_2)
 
+        self.animal_list = arcade.SpriteList()
 
     def setup(self):
-        pass        
+        animals = ['bridgeHighBankedEW','bridgeHighBankedEW','bridgeHighEW','bridgeHighNS','bridgeLowBankedEW','bridgeLowEW','bridgeLowNS','riverBankedHillE','riverBankedHillN','riverBankedHillS','riverBankedHillW','riverBankedWaterfallE','riverBankedWaterfallN','riverBankedWaterfallS','riverBankedWaterfallW','riverHillE','riverHillN','riverHillS','riverHillW']
+
+        for i in range(100):
+            animal = random.choice(animals)
+            x = random.randint(0,800)
+            y = random.randint(0,600)
+            self.animal_sprite = arcade.Sprite("assets/{animal}.png".format(animal=animal), 0.5)
+            self.animal_sprite.center_x = x
+            self.animal_sprite.center_y = y
+            self.animal_list.append(self.animal_sprite)  
 
     def on_draw(self):
         arcade.start_render()
-        pass
-
+        self.animal_list.draw()
 
     def update(self, delta_time):
         pass
